@@ -1,8 +1,67 @@
-
+body{
+    font-family: 'Roboto', sans-serif;
+}
 
 .presupuesto{
     background: linear-gradient(75deg,rgb(255, 0, 68),rgb(131, 0, 187));
 }
 input{
     outline: none;
+    border-radius: 3px;
+    border: none;
+    padding: 0.5rem;
+}
+.form-container{
+    background-color: rgb(0, 0, 0);
+}
+.btn-submit{
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+    transition: 0.5s ease-out;
+}
+.btn-submit:hover{
+    color: greenyellow;
+    transform: scale(1.2);
+}
+i:active{
+    color: greenyellow;
+}
+
+/* CONTENEDORES DE LOS MOVIMIENTOS */
+
+.movimientos span{
+    color: rgb(95, 95, 95);
+}
+
+/* MOVIMIENTOS INGRESOS */
+.ingresos-container h4{
+    color: rgb(0, 171, 171);
+}
+
+.ingresos-container .valor-movimiento{
+    color: rgb(0, 171, 171);
+}
+.ingresos-detalle{
+    background-color: rgba(147, 255, 237, 0.461);
+}
+
+
+/* MOVIMIENTOS EGRESOS */
+.egresos-container h4{
+    color: rgb(171, 0, 23);
+}
+
+.egresos-container .valor-movimiento{
+    color: rgb(255, 5, 5);
+}
+.egresos-detalle{
+    background-color: rgba(255, 147, 147, 0.461);
 }

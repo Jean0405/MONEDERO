@@ -37,10 +37,10 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row justify-content-center bg-secondary py-1">
-            <form action="" class="row justify-content-around" id="form">
-                <div class="col-12 col-sm-3 col-md-2 col-lg-2 d-flex flex-column align-items-center">
+    <div class="form-container container-fluid">
+        <div class="row justify-content-center py-1">
+            <form action="" class="row justify-content-center align-items-center" id="form">
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 d-flex flex-column align-items-center text-light fw-bold my-2">
                     <div class="d-flex">
                         <input type="radio" name="movimiento" value="ingresos">Ingresos
                     </div>
@@ -48,16 +48,46 @@
                         <input type="radio" name="movimiento" value="egresos">Egresos
                     </div>
                 </div>
-                <div class="col-12 col-sm-3 col-md-4 col-lg-5 d-flex justify-content-center">
-                    <input  type="text" name="descripcion" placeholder="Descripción">
+                <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-6 d-flex justify-content-between my-2">
+                    <input class="col-8 col-sm-8 col-md-8"  type="text" name="descripcion" placeholder="Descripción">
+                    <input class="col-3 col-sm-3 col-md-3"  type="number" name="valor" min="0" placeholder="Valor">
                 </div>
-                <div class="col-12 col-sm-3 col-md-4 col-lg-5 d-flex justify-content-center">
-                    <input  type="tnumber" name="valor" placeholder="Valor">
-                </div>
+                <button class="btn btn-submit mx-1" type="submit"><i class="fa-solid fa-square-check"></i></button>
             </form>
         </div>
     </div>
-
+    <div class="container-fluid my-4">
+        <div class="movimientos row">
+             <!-- INGRESOS MOVIMIENTOS CONTAINER -->
+            <div class="ingresos-container col-12 col-sm-12 col-md-6 col-lg-6 p-4 d-flex flex-column align-items-center">
+                <h4 class="fw-bold">INGRESOS</h4>
+                <div class="ingresos row">
+                    <div class="ingresos-detalle col-12 d-flex justify-content-between py-2 my-1 rounded">
+                        <span>Pago del sena</span>
+                        <span class="valor-movimiento">+$3,000,000.00</span>
+                    </div>
+                    <div class="ingresos-detalle col-12 d-flex justify-content-between py-2 rounded">
+                        <span>Pago de Campus</span>
+                        <span class="valor-movimiento">+$3,000,000.00</span>
+                    </div>
+                </div>
+            </div>
+            <!-- EGRESOS MOVIMIENTOS CONTAINER -->
+            <div class="egresos-container col-12 col-sm-12 col-md-6 col-lg-6 p-4 d-flex flex-column align-items-center">
+                <h4 class="fw-bold">EGRESOS</h4>
+                <div class="egresos row">
+                    <div class="egresos-detalle col-12 d-flex justify-content-between py-2 my-1 rounded">
+                        <span>Pago del sena</span>
+                        <span class="valor-movimiento">-$3,000,000.00</span>
+                    </div>
+                    <div class="egresos-detalle col-12 d-flex justify-content-between py-2 rounded">
+                        <span>Pago de Campus</span>
+                        <span class="valor-movimiento">-$3,000,000.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- FONTS ICONS -->
     <script src="https://kit.fontawesome.com/d615d43ab0.js" crossorigin="anonymous"></script>
