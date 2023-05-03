@@ -3,3 +3,6 @@
 .presupuesto{
     background: linear-gradient(75deg,rgb(255, 0, 68),rgb(131, 0, 187));
 }
+input{
+    outline: none;
+}
