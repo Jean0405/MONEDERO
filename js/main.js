@@ -2,7 +2,7 @@ let listaMovimientos = [];
 let totalDisponible = 0;
 let ingresos = 0;
 let egresos = 0;
-
+let valor = 0;
 
 class Calculos {
     constructor(movimiento, descripcion, valor) {
@@ -10,9 +10,12 @@ class Calculos {
         this.descripcion = descripcion;
         this.valor = valor;
     }
-    disponible(valores, totalDisponible, ingresos, egresos) {
-        valores.forEach(item => {
-            let valor = parseInt(item.valor);
+    disponible(lista, totalDisponible, ingresos, egresos) {
+        let mov = new Calculos();
+        let ui = new UI();
+
+        lista.forEach(item => {
+            valor = parseInt(item.valor);
             switch (item.movimiento) {
                 case "ingresos":
                     ingresos += valor;
@@ -22,22 +25,21 @@ class Calculos {
             }
             totalDisponible = ingresos - egresos;
         });
-        let ui = new UI();
-        ui.renderDisponible(totalDisponible,ingresos,egresos)
-        let mov = new Calculos();
-        mov.porcentajes(egresos,ingresos);
+        ui.renderDisponible(totalDisponible,ingresos,egresos);
+        mov.porcentajes(egresos,ingresos,valor);
     }
-    porcentajes(egresos,ingresos){
+    porcentajes(egresos,ingresos,valor){
         let porcentajeEgresos;
+        let ui = new UI();
         if (egresos!=0) {
-            porcentajeEgresos = (egresos/ingresos)*100;
-            let ui = new UI();
+            porcentajeEgresos = Math.floor((egresos/ingresos)*100);
             ui.renderPorcentajes(porcentajeEgresos)
         }
+        // let porcIngreso = Math.floor((valor/ingresos)*100);
+        // document.querySelector('.porcentajesIn').innerHTML = `${porcIngreso}%`
     }
 
 }
-
 
 
 
@@ -46,11 +48,11 @@ class UI {
     renderIngresos(item) {
         const ingresosContainer = document.querySelector('.ingresos');
         const movIngresos = document.createElement('div');
-
         movIngresos.setAttribute('class', 'ingresos-detalle col-12 d-flex justify-content-between py-2 my-1 rounded');
             movIngresos.innerHTML = `
             <span>${item.descripcion}</span>
             <span class="valor-movimiento">+$${item.valor}</span>
+            <span class="valor-movimiento porcentajeIn"></span>
         `;
         ingresosContainer.appendChild(movIngresos);
     }
