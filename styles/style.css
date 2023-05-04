@@ -13,6 +13,10 @@ input{
     border: none;
     padding: 0.5rem;
 }
+.span100{
+    font-size: 1.23rem;
+    color: rgb(0, 160, 218);
+}
 .form-container{
     background-color: rgb(0, 0, 0);
 }
@@ -67,3 +71,4 @@ i:active{
 .egresos-detalle{
     background-color: rgba(255, 147, 147, 0.461);
 }
+

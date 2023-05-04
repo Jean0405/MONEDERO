@@ -4,7 +4,6 @@ let ingresos = 0;
 let egresos = 0;
 
 
-
 class Calculos {
     constructor(movimiento, descripcion, valor) {
         this.movimiento = movimiento;
@@ -25,12 +24,18 @@ class Calculos {
         });
         let ui = new UI();
         ui.renderDisponible(totalDisponible,ingresos,egresos)
-        return totalDisponible, ingresos, egresos;
+        let mov = new Calculos();
+        mov.porcentajes(egresos,ingresos);
+    }
+    porcentajes(egresos,ingresos){
+        let porcentajeEgresos;
+        if (egresos!=0) {
+            porcentajeEgresos = (egresos/ingresos)*100;
+            let ui = new UI();
+            ui.renderPorcentajes(porcentajeEgresos)
+        }
     }
 
-    formReset() {
-        form.reset();
-    }
 }
 
 
@@ -66,9 +71,14 @@ class UI {
         document.querySelector('.ingresos-total').innerHTML=`$${ingresos}`;
         document.querySelector('.egresos-total').innerHTML=`$${egresos}`;
     }
+
+    renderPorcentajes(porcentajeEgresos){
+        document.querySelector('.porcentaje-egresos').innerHTML =`${porcentajeEgresos}%`;
+    }
+    formReset() {
+        form.reset();
+    }
 }
-
-
 
 
 const form = document.querySelector('#formulario');
@@ -81,15 +91,15 @@ form.addEventListener('submit', (e) => {
 
     let mov = new Calculos(movimiento, descripcion, valor);
     listaMovimientos.push(mov)
-    totalDisponible,ingresos,egresos = mov.disponible(listaMovimientos, totalDisponible, ingresos, egresos);
-
+    mov.disponible(listaMovimientos, totalDisponible, ingresos, egresos);
+    
+    
     let ui = new UI();
-
         if (mov.movimiento === "ingresos") {
             ui.renderIngresos(mov);
         }else if(mov.movimiento === "egresos"){
             ui.renderEgresos(mov);
         }
-       
-    mov.formReset();
+    
+    ui.formReset();
 })
