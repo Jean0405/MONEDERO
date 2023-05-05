@@ -47,6 +47,7 @@ i:active{
     color: rgb(95, 95, 95);
 }
 
+
 /* MOVIMIENTOS INGRESOS */
 .ingresos-container h4{
     color: rgb(0, 171, 171);
@@ -59,6 +60,7 @@ i:active{
     cursor: pointer;
     background-color: rgba(147, 255, 237, 0.461);
 }
+
 
 
 /* MOVIMIENTOS EGRESOS */

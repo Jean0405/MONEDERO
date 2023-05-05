@@ -2,7 +2,6 @@ let listaMovimientos = [];
 let totalDisponible = 0;
 let ingresos = 0;
 let egresos = 0;
-let valor = 0;
 
 class Calculos {
     constructor(movimiento, descripcion, valor) {
@@ -13,6 +12,7 @@ class Calculos {
     disponible(lista, totalDisponible, ingresos, egresos) {
         let mov = new Calculos();
         let ui = new UI();
+        let valor = 0;
 
         lista.forEach(item => {
             valor = parseInt(item.valor);
@@ -25,46 +25,50 @@ class Calculos {
             }
             totalDisponible = ingresos - egresos;
         });
+        mov.porcentajes(egresos,ingresos);
         ui.renderDisponible(totalDisponible,ingresos,egresos);
-        mov.porcentajes(egresos,ingresos,valor);
+        ui.renderDisponible(totalDisponible,ingresos,egresos);
+
+        let porcIngreso = Math.floor((valor/ingresos)*100) ;
+        let porcEgreso = Math.floor((valor/egresos)*100);
+
+        return {porcIngreso,porcEgreso};
     }
-    porcentajes(egresos,ingresos,valor){
+    porcentajes(egresos,ingresos){
         let porcentajeEgresos;
         let ui = new UI();
+
         if (egresos!=0) {
             porcentajeEgresos = Math.floor((egresos/ingresos)*100);
             ui.renderPorcentajes(porcentajeEgresos)
         }
-        // let porcIngreso = Math.floor((valor/ingresos)*100);
-        // document.querySelector('.porcentajesIn').innerHTML = `${porcIngreso}%`
     }
 
 }
 
 
-
-
 class UI {
-    renderIngresos(item) {
+    renderIngresos(item,porcIngreso) {
         const ingresosContainer = document.querySelector('.ingresos');
         const movIngresos = document.createElement('div');
         movIngresos.setAttribute('class', 'ingresos-detalle col-12 d-flex justify-content-between py-2 my-1 rounded');
             movIngresos.innerHTML = `
             <span>${item.descripcion}</span>
-            <span class="valor-movimiento">+$${item.valor}</span>
-            <span class="valor-movimiento porcentajeIn"></span>
+            <span class="valor-movimiento mx-2">+$${item.valor}</span>
+            <span class="porcentajeIn">${porcIngreso}%</span>
         `;
         ingresosContainer.appendChild(movIngresos);
     }
 
-    renderEgresos(item){
+    renderEgresos(item,porcEgreso){
+
         const egresosContainer = document.querySelector('.egresos');
         const movEgresos = document.createElement('div');
-
         movEgresos.setAttribute('class', 'egresos-detalle col-12 d-flex justify-content-between py-2 my-1 rounded');
             movEgresos.innerHTML = `
             <span>${item.descripcion}</span>
-            <span class="valor-movimiento">-$${item.valor}</span>
+            <span class="valor-movimiento mx-2">-$${item.valor}</span>
+            <span class="porcentajeEg">${porcEgreso}%</span>
         `;
             egresosContainer.appendChild(movEgresos);
     }
@@ -93,15 +97,17 @@ form.addEventListener('submit', (e) => {
 
     let mov = new Calculos(movimiento, descripcion, valor);
     listaMovimientos.push(mov)
-    mov.disponible(listaMovimientos, totalDisponible, ingresos, egresos);
+    let porc = mov.disponible(listaMovimientos, totalDisponible, ingresos, egresos);
     
-    
+    const {porcIngreso, porcEgreso} = porc;
+    console.log(porcIngreso,porcEgreso)
     let ui = new UI();
+
+
         if (mov.movimiento === "ingresos") {
-            ui.renderIngresos(mov);
+            ui.renderIngresos(mov,porcIngreso);
         }else if(mov.movimiento === "egresos"){
-            ui.renderEgresos(mov);
+            ui.renderEgresos(mov,porcEgreso);
         }
-    
     ui.formReset();
 })
