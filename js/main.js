@@ -1,7 +1,7 @@
-let listaMovimientos = [];
-let totalDisponible = 0;
-let ingresos = 0;
-let egresos = 0;
+let listaMovimientos = []
+let totalDisponible = 0
+let ingresos = 0
+let egresos = 0
 
 class Calculos {
     constructor(movimiento, descripcion, valor) {
