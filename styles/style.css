@@ -47,7 +47,6 @@ i:active{
     color: rgb(95, 95, 95);
 }
 
-
 /* MOVIMIENTOS INGRESOS */
 .ingresos-container h4{
     color: rgb(0, 171, 171);
@@ -59,8 +58,15 @@ i:active{
 .ingresos-detalle{
     cursor: pointer;
     background-color: rgba(147, 255, 237, 0.461);
+    transition: 0.6s ease-out;
 }
 
+.borrar{
+    padding: 0.2rem;
+    font-size: 1.5rem;
+    border: none;
+    color: rgb(0, 116, 183);
+}
 
 
 /* MOVIMIENTOS EGRESOS */
@@ -76,3 +82,9 @@ i:active{
     background-color: rgba(255, 147, 147, 0.461);
 }
 
+@keyframes fadeIn {
+    to {
+        scale: 1;
+        opacity: 1;
+    }
+}
